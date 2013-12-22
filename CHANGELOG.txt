@@ -1,0 +1,308 @@
+------------------------------------------------------------------------------------------
+UO Machine 0.3.2.4 (03/15/2010):
+
+Update:     ICSharpCode.AvalonEdit updated to build 4.0.0.5572.
+Bugfix:     Added support for UO installations without all maps.
+Bugfix:     Fix for 'Error injecting ClientHook.dll...'. Thanks Reximus.
+Bugfix:     Now compatible with EasyUO.  Thanks Reximus.
+Bugfix:     MultiUO support for newer clients.  Thanks Reximus.
+
+------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------
+UO Machine 0.3.2.3 (01/06/2010):
+
+Update:     RazorLoader no longer depends on DEVPATH environment variable or the
+            RazorLoader.exe.config file.
+Bugfix:     MacroEx.GetMapInfo wasn't working for Ter Mur.  Thanks Reximus.
+
+------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------
+UO Machine 0.3.2.2 (11/16/09):
+
+Bugfix:     Argument parser in RazorLoader not working properly.  Thanks Reximus.
+
+------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------
+UO Machine 0.3.2.1 (11/14/09):
+
+Bugfix:     MacroEx.SystemMessage wasn't null terminated, causing buffer overflow.
+Bugfix:     Script exceptions in event handlers were bubbling up to UOM.  They are now
+            caught and logged.
+Bugfix:     Fresh install of Razor displays message on every startup about english
+            language file if you never change to a different language.
+Note:       To use RazorLoader standalone you must first set "DEVPATH" environment
+            variable to Razor folder or first run UO Machine once to set the variable.
+------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------
+UO Machine Alpha 3 Revision 2 (10/29/09):
+
+Bugfix:     No more force closings of Razor clients.  Razor loader split into it's own
+            project;  it's now a console exe.
+Bugfix:     Data.Cliloc.GetLocalString(int property, string[] arguments) updated to
+            properly parse embedded cliloc strings.
+Bugfix:     Double entries are now filtered from WorldItem.Properties.
+Update:     WorldItem.Properties (and it's derived types) renamed to PropertyText.  This
+            is still decoded item properties stored as a multi-line string.
+Update:     WorldItem.Properties (and derived types) is now type UOMachine.Property[].
+Update:     Facet.Stygian_Abyss enum entry renamed to Ter_Mur.
+Feature:    MacroEx.TestPacket added, mostly for me, which allows an incoming or outgoing
+            packet to be sent to UO Machine in order observe how it's handled.
+Feature:    UOMachine.Property class added, has 3 properties: string Text which is the
+            entire property decoded as a string i.e. "lower reagent cost 14%", int Cliloc
+            which is the cliloc entry for the property i.e. 1060434, and string[]
+            Arguments which are the arguments for the cliloc i.e. { "14" }.
+------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------
+UO Machine Alpha 3 Revision 1 (10/21/09):
+
+Bugfix:     Error parsing gump layouts with additional random whitespace thrown in. (OSI)
+Bugfix:     Support for multiple cliloc tokens in generic gump elements.
+Bugfix:     Razor loader now remembers last language used and shuts down more properly.
+Bugfix:     MacroEx.Target fixed.
+Bugfix:     Bug with Mobile.GetEquippedItem and probably others fixed.
+Bugfix:     In trying to fix Razor force closes, found that AppDomains weren't unloading.
+Update:     Added some new Stygian Abyss gump elements, I'm probably missing others.
+Update:     MacroEx.GumpButtonClick now lets you send text.
+Update:     Macro.FindMobiles now overloaded to take an array of IDs to search for.
+Update:     Macro.FindItems now overloaded to take an array of IDs to search for.
+Update:     Events.General.CustomGumpEvent renamed to GenericGumpEvent.
+Feature:    All clients launched from UOM now ignore login.cfg and use the server/port
+            from options.
+Feature:    Macro.ChangeServer lets you change login server/port for specified client.
+Feature:    Macro.LaunchClient allows you to launch a new client.
+Feature:    Macro.LaunchRazor allows you to launch a new Razor instance.
+Feature:    Always light patch for all ML/SA 2d clients in Options -> Client.
+Note:       Currently, closing a UOM Razor client may force close other running Razor 
+            clients within UOM.  It's a known issue that I'm working on.
+------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------
+UO Machine Alpha 3 (10/09/09):
+
+Bugfix:     Intermittent hang on UO Machine exit.
+Bugfix:     ServerListEvent/CharacterListEvent were not cleared on ClearEvents().
+Bugfix:     Crash when handling packet 0x3A.
+Bugfix:     Empty placeholder PlayerMobile now exists in case details are sent before 
+            packet 0x1B is received.
+Feature:    Support for future UO clients without waiting for updates.
+Feature:    Support for encryption removal for all ML/SA clients, see Options->Client.
+            Thanks to Daniel 'Necr0Potenc3' Cavalcanti.
+Feature:    Added option to remove Felucca stamina check for clients < 7.0.0.0.
+Feature:    Support for some new Stygian Abyss packets.
+Feature:    MacroEx.ToggleFlying added, toggles flying for gargoyles. (untested)
+Update:     Events.IncomingPacket.CustomGump renamed to GenericGump.
+------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------
+UO Machine Alpha 2 Revision 4 (09/22/09):
+
+Bugfix:     Fixed resource leak.
+Bugfix:     Fixed crash bug with handling incoming packet 0xB0.
+Bugfix:     Fixed crash bug related to options.xml and startup.
+Feature:    Added support for Razor 1.0.12.4.
+Feature:    Added support for client 6.0.14.3/4.
+Feature:    Added support for client 7.0.0.0.
+Feature:    Added support for client 7.0.0.2.
+Feature:    MacroEx.GetMapInfo now supports Stygian Abyss.
+Feature:    Events.IncomingPackets.ServerListEvent fires on packet 0xA8.
+Feature:    Events.IncomingPackets.CharacterListEvent fires on packet 0xA9.
+Feature:    MacroEx.SelectServer sends server select packet to server.
+Feature:    Macro.Login logs into game server, selects chosen shard and character.
+            It's still kind of crude, but it should be reliable enough.
+Feature:    Macro.GetGumpList returns array of GumpInfo objects which describes all
+            open gumps in the client, including containers, spell icons, etc.
+Update:     UOM.GetAllSkills renamed to GetSkills.
+Update:     UOM.GetAllSkillNames renamed to GetSkillNames.
+Update:     UOM.GetSkillName now returns empty string on error.
+Update:     References to "Custom gumps" renamed to "Generic gumps" to be more in line
+            with standard UO terms.
+Update:     Majority of methods moved from UOM class to Macro or MacroEx classes
+            because it was a little confusing the way it was before.
+
+Following methods moved to UOMachine.Macros.Macro:
+CancelTargetCursor, IsTargetCursor, SetTargetCursor, SendText, SendKeys, SendMouseClick,
+FindItem, FindItems, FindMobile, FindMobiles, GetItem, GetMobile, GetPlayer,
+WriteClientMemory, ReadClientMemory, AddKeyboardMacro, RemoveKeyboardMacro,
+ClearKeyboardMacros, GetSkillInfo, GetSkills
+
+Following methods move to UOMachine.Macros.MacroEx:
+GetAttackTarget (renamed from GetCurrentAttackTarget), GetMapInfo, GetGenericGump,
+GetGenericGumps
+
+NOTE: UO Machine has never been tested by me on OSI servers.  I know packets have
+been added/changed.  Crashes will likely occur, and using UOM's packet sending macros
+may or may not be detected by OSI as use of a third party utility.
+------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------
+UO Machine Alpha 2 Revision 3 (08/07/09):
+
+Bugfix:     Fixed potential issue with Razor launcher.
+Bugfix:     Client launcher wasn't using client path from options.
+Bugfix:     Fixed bug with handling packet 0xDD.
+Bugfix:     Null reference bug in gump parsing code, now gumps without pages are handled
+            correctly.
+Update:     UOMachine.Gump class now has GumpElements field for elements with no page.
+Update:     Gump.GetNearestElement only searches the page on which the source element
+            resides (or GumpElements if element has no parent page).
+------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------
+UO Machine Alpha 2 Revision 2 (07/29/09):
+
+Bugfix:     Item labels with multiple localization tokens now decoded properly.
+Bugfix:     Stale item pruning fixed & updated.
+Bugfix:     Fixed one of the MacroEx.DropItem overloads.
+Feature:    Added support for client 6.0.14.1
+Feature:    Added support for client 6.0.14.2
+Feature:    Custom Razor launcher.  Razor now launches in a separate AppDomain from within 
+            UO Machine.  If UO Machine closes while Razor is running it will remain
+            running in the background until Razor exits.
+Feature:    Generic in memory multi UO patch for all ML 2D clients.
+Feature:    Events.IncomingPackets.CustomGumpEvent fires on packet 0xDD and 0xB0.
+Feature:    Events.General.CustomGumpEvent fires on parsed gump, passes Gump object.
+Feature:    Events.LowLevel.ClearEvents() method added for resetting events.
+Feature:    MacroEx.GumpButtonClick sends button click packet to server.
+Feature:    MacroEx.CloseClientGump sends close gump packet to client.
+Feature:    UOM.GetGump gets gump with specified ID from target client.
+Feature:    UOM.GetGumps gets all gumps for target client.
+Feature:    UOM.FindGump gets gump with specified serial from target client.
+Feature:    Gump class encapsulates parsed custom gumps.  Most elements are parsed, 
+            except for "group", looking for example of that one. GumpElements are 
+            contained in GumpPages.  Exposed methods allow scripts to close gumps, click
+            gump buttons, search for GumpElements by ID or Type, and search for closest 
+            GumpElement (with optional filtering by type).
+Update:     TreeView now has "Last gump action" entry under Last actions.  Also a 
+            "Custom gumps" entry under Status which shows number of custom gumps open.
+Update:     Options updated, new Razor tab in Options window.  New server and port 
+            entry in options.  Currently this is only used for launching Razor, clients
+            still need to use login.cfg for now. Old options.xml are invalid, sorry.
+Update:     On script stop all public events are now reset.  This will help prevent any
+            event code in your previously compiled scripts from executing.
+Update:     Lots of little changes.
+------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------
+UO Machine Alpha 2 Revision 1 (07/02/09):
+
+Bugfix:     Oops, I broke UOM.SendPacketToClient when I updated the asm code.
+Bugfix:     Equipping/unequipping items now properly updates players/mobiles.
+Bugfix:     UOM sometimes attaches to wrong client w/Razor.  Still not perfect.
+Bugfix:     Mobiles are now updated with bonded status.
+Bugfix:     UOM.SendKeys was only sending first key.
+Feature:    IncomingPackets.ItemEquippedEvent added.
+Feature:    IncomingPackets.SoundEvent added.
+Feature:    IncomingPackets.BondedStatusEvent added.
+Feature:    IncomingPackets.AttackGrantedEvent added.  RunUO doesn't seem to
+            send this packet.
+Feature:    IncomingPackets.AttackEndedEvent added.  RunUO doesn't seem to
+            send this packet
+Feature:    IncomingPackets.AttackSwingEvent added.  Fired on weapon swing.
+Feature:    IncomingPackets.LoggedOutEvent added.  This event doesn't seem to
+            fire on standard logouts.
+Feature:    IncomingPackets.AttackTargetEvent added.  This is current attack
+            target. Serial 0 = combat ended.
+Feature:    UOM.GetCurrentAttackTarget added.
+Feature:    MacroEx.Click added.
+Feature:    MacroEx.Attack added.
+Feature:    MacroEx.SystemMessage added.  Sends system message to client.
+Feature:    MacroEx.LogOut added.
+Update:     UOMachine.PlayerMobile now exposes Client field which shows which
+            client instance the object is linked to
+Update:     All integer references to item layer replaced with Layer enum.
+Update:     Removed some old unnecessary Interlocked calls.
+Update:     XY positions for container items enabled.
+Update:     Updated stale item removal.
+------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------
+UO Machine Alpha 2 (06/25/09):
+
+Bugfix:     Lowered risk of high CPU usage bug by delaying DLL injection a bit.
+Feature:    Added support for client 6.0.13.1
+Feature:    UOM.SendText(int client, string text): Send unicode string to
+            client as simulated keystrokes.  Escaped chars do work, i.e. "\r"
+Feature:    UOM.SendKeys(int client, Keys[] keys): Send array of keys to
+            client as simulated keystrokes. Useful for system keys.
+Feature:    UOM.SendMouseClick allows you to send mouse clicks to relative
+            position within the client window.  Restores window / moves mouse.
+Feature:    Macro.Pathfind: Client pathfind macro
+Feature:    MacroEx.ContextMenu: Request mob's context menu
+Feature:    MacroEx.ContextMenuClick: Click menu entry in mob's context menu
+Feature:    UOM.GetJournal: get journal for specified client.  Journal is
+            not actual client journal, but a custom implementation based on
+            a generic thread safe circular buffer.
+Feature:    UOMachine.Events.IncomingPackets.ContextMenuEvent: fired on
+            receipt of context menu entries.  Allows scripts to examine
+            properties of each entry (text, color, etc.) and send click packet.
+Feature:    UOMachine.Events.General.JournalEntryEvent: fired when entry is 
+            added to any of UOM's journals.
+Update:     Completely revamped event system.  Public events are now fully
+            thread safe.  Public/internal events/internal event handlers now 
+            located in UOMachine.Events namespace.  Sorry for broken scripts.
+Update:     Mouse position in TreeView now displayed as relative position
+            to client window instead of the absolute screen position.
+Update:     Removed "partial" thread safety of IPC events.
+Workaround: Arg.  UOM just doesn't like dll injection @ 64 bit for me.  Until
+            I get this sorted once and for all UOM will target x86 platform.
+------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------
+UO Machine Alpha 1 Revision 4 (06/02/09):
+
+Bugfix:     Fixed broken packet send hook (was only working with Razor).
+Bugfix:     Fixed ability to send raw packets (was only working with Razor).
+Bugfix:     Some redundant threading removed.
+Bugfix:     Mobile/item status in treeview now updates properly.
+Bugfix:     Crash when trying to launch UO client while another is still running.
+Bugfix:     Multiple clients now working again with UOM compiled for AnyCPU.
+            Previous workaround was to target x86.
+Feature:    Now possible to send packets to client, see UOM.SendPacketToClient.
+Feature:    Scripts can now reference specific assemblies.  See the Edit menu.
+Feature:    Ability to set/clear target cursor: see UOM.SetTargetCursor.
+Feature:    Ability to cancel target cursor (same as pressing Esc):
+            see UOM.CancelTargetCursor.
+Update:     Client macro system optimized: now 1 API call instead of 5.
+Update:     MacroEx.WaitForTarget now takes an int parameter for timeout value.
+Update:     UOM.SendRawPacket renamed to UOM.SendPacketToServer.
+Update:     AvalonEdit updated to build 4187.
+------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------
+UO Machine Alpha 1 Revision 3 (04/30/09):
+
+Bugfix:     Razor no longer required.
+Bugfix:     GUI/theme glitches.
+Feature:    Local WH_GETMESSAGE hook replaces global keyboard hook and adds
+            mouse monitoring capability.
+Feature:    Low level events added to IPCEvents class for mouse movement, mouse
+            button down/up/click/double-click, mouse wheel use, key down/up,
+            and packet send/receive.  ALWAYS unsubscribe from events after use!
+Feature:    Last keypress and mouse location added to treeview.  Last keypress
+            is meant to aid macro creation so correct Keys enums are used.
+Feature:    'Format Document' option under Edit menu performs very simple
+            indentation based on curly brace location.
+Update:     Treeview now updates in real time instead of caching.
+Update:     AvalonEdit updated to build 4038.
+Update:     New Document tab in Options.
+------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------
+UO Machine Alpha 1 Revision 2 (03/26/09):
+
+Bugfix:     Client crash when trying to launch multiple clients on any platform.
+Workaround: Multiple clients not supported on x64 platform.
+Feature:    Keyboard macros now supported, examples and docs to be posted soon.
+------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------
+UO Machine Alpha 1 Revision 1 (03/23/09):
+
+UO Machine now supports encrypted clients.  All Mondains's Legacy 2D clients
+should be working.
+------------------------------------------------------------------------------------------

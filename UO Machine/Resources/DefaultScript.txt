@@ -1,0 +1,31 @@
+using System;
+using System.Threading;
+using System.Windows.Forms;
+using UOMachine;
+using UOMachine.Macros;
+using UOMachine.Utility;
+using UOMachine.Data;
+using UOMachine.Events;
+
+namespace UOMScript
+{
+    public class Script : IScriptInterface
+    {
+        private bool myScriptRunning = true;
+
+        public void Start()
+        {
+            while (myScriptRunning)
+            {
+                //TODO: Implement functionality
+                Thread.Sleep(1);
+            }
+        }
+
+        public void Stop()
+        {
+            myScriptRunning = false;
+        }
+
+    }
+}

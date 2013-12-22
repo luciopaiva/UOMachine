@@ -1,0 +1,138 @@
+﻿<Window x:Class="UOMachine.MainWindow" x:ClassModifier="internal"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:AvalonEdit="clr-namespace:ICSharpCode.AvalonEdit;assembly=ICSharpCode.AvalonEdit"
+    Title="UO Machine Alpha 3" Height="480" Width="680" x:Name="Main" xmlns:UOMachine="clr-namespace:UOMachine" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d">
+	<Window.Resources>
+		<Style x:Key="ButtonStyle1" BasedOn="{x:Null}" TargetType="{x:Type Button}">
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate TargetType="{x:Type Button}">
+						<Grid>
+							<Image Source="{StaticResource StartButton}"/>
+							<ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" RecognizesAccessKey="True"/>
+						</Grid>
+						<ControlTemplate.Triggers>
+							<Trigger Property="IsFocused" Value="True"/>
+							<Trigger Property="IsDefaulted" Value="True"/>
+							<Trigger Property="IsMouseOver" Value="True"/>
+							<Trigger Property="IsPressed" Value="True"/>
+							<Trigger Property="IsEnabled" Value="False"/>
+						</ControlTemplate.Triggers>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
+		<Style x:Key="ButtonStyle2" BasedOn="{x:Null}" TargetType="{x:Type Button}">
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate TargetType="{x:Type Button}">
+						<Grid>
+							<Image Source="{StaticResource AddButton}"/>
+							<ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" RecognizesAccessKey="True"/>
+						</Grid>
+						<ControlTemplate.Triggers>
+							<Trigger Property="IsFocused" Value="True"/>
+							<Trigger Property="IsDefaulted" Value="True"/>
+							<Trigger Property="IsMouseOver" Value="True"/>
+							<Trigger Property="IsPressed" Value="True"/>
+							<Trigger Property="IsEnabled" Value="False"/>
+						</ControlTemplate.Triggers>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
+		<Style x:Key="ButtonStyle3" BasedOn="{x:Null}" TargetType="{x:Type Button}">
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate TargetType="{x:Type Button}">
+						<Grid>
+							<Image RenderTransformOrigin="1.644,0.76" Source="{StaticResource StopButton}"/>
+							<ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" RecognizesAccessKey="True"/>
+						</Grid>
+						<ControlTemplate.Triggers>
+							<Trigger Property="IsFocused" Value="True"/>
+							<Trigger Property="IsDefaulted" Value="True"/>
+							<Trigger Property="IsMouseOver" Value="True"/>
+							<Trigger Property="IsPressed" Value="True"/>
+							<Trigger Property="IsEnabled" Value="False"/>
+						</ControlTemplate.Triggers>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
+		<Style x:Key="ButtonStyle4" BasedOn="{x:Null}" TargetType="{x:Type Button}">
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate TargetType="{x:Type Button}">
+						<Grid>
+							<Image Source="{StaticResource RazorButton}"/>
+							<ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" RecognizesAccessKey="True"/>
+						</Grid>
+						<ControlTemplate.Triggers>
+							<Trigger Property="IsFocused" Value="True"/>
+							<Trigger Property="IsDefaulted" Value="True"/>
+							<Trigger Property="IsMouseOver" Value="True"/>
+							<Trigger Property="IsPressed" Value="True"/>
+							<Trigger Property="IsEnabled" Value="False"/>
+						</ControlTemplate.Triggers>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
+	</Window.Resources>
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition/>
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="480"/>
+			<ColumnDefinition Width="6"/>
+			<ColumnDefinition/>
+		</Grid.ColumnDefinitions>
+        
+		<GridSplitter Grid.Column="1" Grid.Row="0"
+			Height="Auto" Width="Auto" HorizontalAlignment="Stretch"
+			VerticalAlignment="Stretch" />
+		<Menu Height="36" x:Name="menu1" VerticalAlignment="Top" Grid.ColumnSpan="3" >
+			<Menu.Background>
+				<LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+					<GradientStop Color="#FFCFCFCF" Offset="1"/>
+					<GradientStop Color="#FFFFFFFF" Offset="0"/>
+				</LinearGradientBrush>
+			</Menu.Background>
+			<MenuItem FontSize="12" Header="File">
+                <MenuItem Header="New" FontSize="12" Click="FileNew_Click" />
+                <MenuItem Header="Open" FontSize="12" Click="FileOpen_Click"  />
+                <MenuItem Header="Save" FontSize="12" Click="FileSave_Click" IsEnabled="False" />
+                <MenuItem Header="Save As" FontSize="12" Click="FileSaveAs_Click" />
+                <MenuItem Header="Exit" FontSize="12" Click="FileExit_Click"/>
+            </MenuItem>
+            <MenuItem Header="Edit" FontSize="12">
+                <MenuItem Header="Format document" Click="FormatDocument_Click"/>
+                <MenuItem Header="Add assembly reference" Click="AddReference_Click" />
+                <MenuItem Header="Options" FontSize="12" Click="EditOptions_Click"/>
+            </MenuItem>
+            <MenuItem Header="Help" FontSize="12">
+                <MenuItem Header="About" FontSize="12" Click="HelpAbout_Click" />
+            </MenuItem>
+        </Menu>
+        <Button Margin="0,3,160,0" Style="{DynamicResource ButtonStyle1}" VerticalAlignment="Top" Height="32" ToolTip="Start script" x:Name="startButton" Click="startButton_Click" Width="32" HorizontalAlignment="Right" Focusable="False" BorderBrush="Transparent" BorderThickness="3" Opacity="1" MouseEnter="startButton_MouseEnter" MouseLeave="startButton_MouseLeave" PreviewMouseDown="startButton_PreviewMouseDown" PreviewMouseUp="startButton_PreviewMouseUp" />
+        <Button HorizontalAlignment="Right" Margin="0,3,118,0" Style="{DynamicResource ButtonStyle3}" VerticalAlignment="Top" Width="32" Height="32" Name="stopButton" Click="stopButton_Click" ToolTip="Stop script" Focusable="False" Opacity="1" MouseEnter="stopButton_MouseEnter" MouseLeave="stopButton_MouseLeave" PreviewMouseDown="stopButton_PreviewMouseDown" PreviewMouseUp="stopButton_PreviewMouseUp" />
+        <Button HorizontalAlignment="Right" Margin="0,3,42,0" Style="{DynamicResource ButtonStyle2}" VerticalAlignment="Top" Width="32" Height="32" Name="addButton" Click="addButton_Click" ToolTip="Start new UO client" Focusable="False" Opacity="1" MouseEnter="addButton_MouseEnter" MouseLeave="addButton_MouseLeave" PreviewMouseDown="addButton_PreviewMouseDown" PreviewMouseUp="addButton_PreviewMouseUp" />
+        <Button Margin="0,3,0,0" Style="{DynamicResource ButtonStyle4}" VerticalAlignment="Top" Height="32" Name="razorButton" Click="razorButton_Click" ToolTip="Start new Razor instance" Focusable="False" HorizontalAlignment="Right" Width="32" Opacity="1" MouseEnter="razorButton_MouseEnter" MouseLeave="razorButton_MouseLeave" PreviewMouseDown="razorButton_PreviewMouseDown" PreviewMouseUp="razorButton_PreviewMouseUp" />
+        <StatusBar Height="24" Margin="0,0,0,0" Name="statusBar1" VerticalAlignment="Bottom" Grid.ColumnSpan="3" >
+        	<StatusBar.Background>
+        		<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+        			<GradientStop Color="#FFC0C0C0" Offset="1"/>
+        			<GradientStop Color="#FFFFFFFF" Offset="0"/>
+        		</LinearGradientBrush>
+        	</StatusBar.Background>
+        </StatusBar>
+		<TreeView Margin="0,36,0,24" x:Name="clientTreeView" Grid.Column="2" FocusVisualStyle= "{x:Null}">
+        </TreeView>
+        <AvalonEdit:TextEditor Margin="0,36,0,24" x:Name="scriptTextBox" Text="" FontFamily="Tahoma" FontSize="11.5"></AvalonEdit:TextEditor>
+        <Label Height="Auto" Name="labelStatus" VerticalAlignment="Bottom" FontSize="12" Margin="12,0,8,0">Status: Ready</Label>
+    </Grid>
+    
+</Window>

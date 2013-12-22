@@ -1,0 +1,343 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{345BB973-6FA1-4152-AEBB-61F406E0CF26}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>UOMachine</RootNamespace>
+    <AssemblyName>UOMachine</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>snk.snk</AssemblyOriginatorKeyFile>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\output\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
+    <PlatformTarget>x86</PlatformTarget>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+    <DocumentationFile>..\output\UOMachine.XML</DocumentationFile>
+    <NoWarn>1591</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\output\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <DocumentationFile>..\output\UOMachine.xml</DocumentationFile>
+    <PlatformTarget>x86</PlatformTarget>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EasyHook, Version=2.5.0.0, Culture=neutral, PublicKeyToken=4b580fca19d0b0c5, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\output\EasyHook.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.AvalonEdit, Version=0.0.0.0, Culture=neutral, PublicKeyToken=9cc39be672370310, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>.\ICSharpCode.AvalonEdit.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Remoting" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="UIAutomationProvider">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="PresentationCore">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="PresentationFramework">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Page Include="ResourceDictionary1.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="About.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="AssemblyPicker.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Options.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="About.xaml.cs">
+      <DependentUpon>About.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="AssemblyHelper\AssemblyParser.cs" />
+    <Compile Include="AssemblyPicker.xaml.cs">
+      <DependentUpon>AssemblyPicker.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AssemblyHelper\AssemblyHelper.cs" />
+    <Compile Include="App.cs" />
+    <Compile Include="ClientHook\CreateCALL.cs" />
+    <Compile Include="ClientHook\InstallSendHook.cs" />
+    <Compile Include="Data\GumpParser.cs" />
+    <Compile Include="Objects\Property.cs" />
+    <Compile Include="Data\ServerInfo.cs" />
+    <Compile Include="Events\General.cs" />
+    <Compile Include="Events\IncomingPackets.cs" />
+    <Compile Include="Events\InternalEventHandler\IncomingPacketHandler.cs" />
+    <Compile Include="Events\InternalEventHandler\IPCHandler.cs" />
+    <Compile Include="Events\InternalEventHandler\OutgoingPacketHandler.cs" />
+    <Compile Include="Events\LowLevel.cs" />
+    <Compile Include="Events\OutgoingPackets.cs" />
+    <Compile Include="Macros\Enums.cs" />
+    <Compile Include="Macros\MacroEx\Attack.cs" />
+    <Compile Include="Macros\MacroEx\Cast%28Bushido%29.cs" />
+    <Compile Include="Macros\MacroEx\Cast%28Chivalry%29.cs" />
+    <Compile Include="Macros\MacroEx\Cast%28Magery%29.cs" />
+    <Compile Include="Macros\MacroEx\Cast%28Necromancy%29.cs" />
+    <Compile Include="Macros\MacroEx\Cast%28Ninjitsu%29.cs" />
+    <Compile Include="Macros\MacroEx\Cast%28Spellweaving%29.cs" />
+    <Compile Include="Macros\MacroEx\ChangeStatLock.cs" />
+    <Compile Include="Macros\MacroEx\Click.cs" />
+    <Compile Include="Macros\MacroEx\CloseClientGump.cs" />
+    <Compile Include="Macros\MacroEx\ContextMenu.cs" />
+    <Compile Include="Macros\MacroEx\ContextMenuClick.cs" />
+    <Compile Include="Macros\MacroEx\DragItem.cs" />
+    <Compile Include="Macros\MacroEx\DropItem.cs" />
+    <Compile Include="Macros\MacroEx\FindGump.cs" />
+    <Compile Include="Macros\MacroEx\GetGump.cs" />
+    <Compile Include="Macros\MacroEx\GetGumps.cs" />
+    <Compile Include="Macros\MacroEx\TestPacket.cs" />
+    <Compile Include="Macros\MacroEx\ToggleFlying.cs" />
+    <Compile Include="Macros\Macro\AddKeyboardMacro.cs" />
+    <Compile Include="Macros\Macro\ChangeServer.cs" />
+    <Compile Include="Macros\Macro\ClearKeyboardMacros.cs" />
+    <Compile Include="Macros\Macro\FindItem.cs" />
+    <Compile Include="Macros\Macro\FindItems.cs" />
+    <Compile Include="Macros\Macro\FindMobile.cs" />
+    <Compile Include="Macros\Macro\FindMobiles.cs" />
+    <Compile Include="Macros\Macro\GetGumpList.cs" />
+    <Compile Include="Macros\MacroEx\GumpButtonClick.cs" />
+    <Compile Include="Macros\MacroEx\LastSkill.cs" />
+    <Compile Include="Macros\MacroEx\LastTarget.cs" />
+    <Compile Include="Macros\MacroEx\LogOut.cs" />
+    <Compile Include="Macros\MacroEx\MacroEx.cs" />
+    <Compile Include="Macros\MacroEx\ChangeSkillLock.cs" />
+    <Compile Include="Macros\MacroEx\SelectServer.cs" />
+    <Compile Include="Macros\MacroEx\SendPacketToClient.cs" />
+    <Compile Include="Macros\MacroEx\SendPacketToServer.cs" />
+    <Compile Include="Macros\MacroEx\SystemMessage.cs" />
+    <Compile Include="Macros\MacroEx\Target.cs" />
+    <Compile Include="Macros\MacroEx\UseItem.cs" />
+    <Compile Include="Macros\MacroEx\UseSkill.cs" />
+    <Compile Include="Macros\MacroEx\WaitForTarget.cs" />
+    <Compile Include="Macros\Macro\CancelTargetCursor.cs" />
+    <Compile Include="Macros\Macro\Cast%28Bushido%29.cs" />
+    <Compile Include="Macros\Macro\Cast%28Chivalry%29.cs" />
+    <Compile Include="Macros\Macro\Cast%28Magery%29.cs" />
+    <Compile Include="Macros\Macro\Cast%28Necromancy%29.cs" />
+    <Compile Include="Macros\Macro\Cast%28Ninjitsu%29.cs" />
+    <Compile Include="Macros\Macro\Cast%28Spellweaving%29.cs" />
+    <Compile Include="Macros\MacroEx\GetAttackTarget.cs" />
+    <Compile Include="Macros\MacroEx\GetMapInfo.cs" />
+    <Compile Include="Macros\Macro\GetItem.cs" />
+    <Compile Include="Macros\Macro\GetJournal.cs" />
+    <Compile Include="Macros\Macro\GetMobile.cs" />
+    <Compile Include="Macros\Macro\GetPlayer.cs" />
+    <Compile Include="Macros\Macro\GetSkillInfo.cs" />
+    <Compile Include="Macros\Macro\GetSkills.cs" />
+    <Compile Include="Macros\Macro\IsTargetCursor.cs" />
+    <Compile Include="Macros\MacroEx\Login.cs" />
+    <Compile Include="Macros\Macro\LaunchClient.cs" />
+    <Compile Include="Macros\Macro\LaunchRazor.cs" />
+    <Compile Include="Macros\Macro\Macro.cs" />
+    <Compile Include="Macros\Macro\Move.cs" />
+    <Compile Include="Macros\Macro\Pathfind.cs" />
+    <Compile Include="Macros\Macro\ReadClientMemory.cs" />
+    <Compile Include="Macros\Macro\RemoveKeyboardMacro.cs" />
+    <Compile Include="Macros\Macro\SendKeys.cs" />
+    <Compile Include="Macros\Macro\SendMouseClick.cs" />
+    <Compile Include="Macros\Macro\SendText.cs" />
+    <Compile Include="Macros\Macro\SetRange.cs" />
+    <Compile Include="Macros\Macro\SetTargetCursor.cs" />
+    <Compile Include="Macros\Macro\Speech.cs" />
+    <Compile Include="Macros\Macro\InvokeVirtue.cs" />
+    <Compile Include="ClientHook\InstallRecvHook.cs" />
+    <Compile Include="Macros\Macro\WriteClientMemory.cs" />
+    <Compile Include="Misc\ClientInfo.cs" />
+    <Compile Include="Misc\ClientInfoCollection.cs" />
+    <Compile Include="Misc\ClientPatcher.cs" />
+    <Compile Include="Misc\DocumentHelper.cs" />
+    <Compile Include="Misc\Enums.cs" />
+    <Compile Include="IPC\ClientInstance.cs" />
+    <Compile Include="IPC\Data.cs" />
+    <Compile Include="IPC\IPC.cs" />
+    <Compile Include="IPC\Network.cs" />
+    <Compile Include="IPC\ServerInstance.cs" />
+    <Compile Include="Misc\HotKeyList.cs" />
+    <None Include="app.config" />
+    <Compile Include="Macros\Macro\Action.cs" />
+    <Compile Include="Macros\Macro\Assembler.cs" />
+    <Compile Include="Macros\Macro\Event.cs" />
+    <Compile Include="Macros\Macro\Gump.cs" />
+    <Compile Include="Macros\Macro\Skill.cs" />
+    <Compile Include="Macros\Macro\Target.cs" />
+    <Compile Include="Memory\Memory.cs" />
+    <Compile Include="Memory\MemoryInit.cs" />
+    <Compile Include="Memory\SetAddresses.cs" />
+    <Compile Include="Misc\ClientLauncher.cs" />
+    <Compile Include="Objects\GumpInfo.cs" />
+    <Compile Include="Objects\Gumps\GumpElement.cs" />
+    <Compile Include="Objects\Gumps\GumpType.cs" />
+    <Compile Include="Misc\RazorLauncher.cs" />
+    <Compile Include="Objects\ContextEntry.cs" />
+    <Compile Include="Objects\CustomGumpCollection.cs" />
+    <Compile Include="Objects\Gumps\Gump.cs" />
+    <Compile Include="Objects\Gumps\GumpPage.cs" />
+    <Compile Include="Objects\ItemCollection.cs" />
+    <Compile Include="Objects\JournalEntry.cs" />
+    <Compile Include="Objects\Mobile.cs" />
+    <Compile Include="Objects\MobileCollection.cs" />
+    <Compile Include="Objects\PlayerMobile.cs" />
+    <Compile Include="Objects\Item.cs" />
+    <Compile Include="Objects\PlayerStatus.cs" />
+    <Compile Include="Objects\SkillInfo.cs" />
+    <Compile Include="Objects\Structs.cs" />
+    <Compile Include="Objects\WorldItem.cs" />
+    <Compile Include="Options.xaml.cs">
+      <DependentUpon>Options.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Misc\OptionsData.cs" />
+    <Compile Include="Data\IncomingPacketParser.cs" />
+    <Compile Include="Data\OutgoingPacketParser.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Scripts\IScriptInterface.cs" />
+    <Compile Include="Scripts\NamespaceToAssembly.cs" />
+    <Compile Include="Scripts\ScriptCompiler.cs" />
+    <Compile Include="TreeView\NodeConstructor.cs" />
+    <Compile Include="TreeView\TreeViewStatus.cs" />
+    <Compile Include="TreeView\TreeViewUpdater.cs" />
+    <Compile Include="UOM.cs" />
+    <Compile Include="Data\Cliloc.cs" />
+    <Compile Include="Utility\CircularBuffer.cs" />
+    <Compile Include="Utility\CRC32.cs" />
+    <Compile Include="Utility\ExeInfo.cs" />
+    <Compile Include="Utility\GumpHelper.cs" />
+    <Compile Include="Utility\Log.cs" />
+    <Compile Include="Utility\RegistryHelper.cs" />
+    <Compile Include="Utility\Resolve.cs" />
+    <Compile Include="Utility\ThreadHelper.cs" />
+    <Compile Include="Data\InternalLandTile.cs" />
+    <Compile Include="Data\InternalStaticTile.cs" />
+    <Compile Include="Data\LandTile.cs" />
+    <Compile Include="Data\Map.cs" />
+    <Compile Include="Data\MapInfo.cs" />
+    <Compile Include="Data\StaticTile.cs" />
+    <Compile Include="Data\TileFlags.cs" />
+    <Compile Include="Data\Skills.cs" />
+    <Compile Include="Data\TileData.cs" />
+    <Compile Include="Utility\UOMath.cs" />
+    <Compile Include="Win32\CreateProcess.cs" />
+    <Compile Include="Win32\GainMemoryAccess.cs" />
+    <Compile Include="Win32\GainMemoryAccessEx.cs" />
+    <Compile Include="Win32\Win32.cs" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="snk.snk" />
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DefaultScript.txt" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

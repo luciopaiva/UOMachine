@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UO Machine", "UO Machine\UO Machine.csproj", "{345BB973-6FA1-4152-AEBB-61F406E0CF26}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientHook", "ClientHook\ClientHook.csproj", "{280A0414-F1D7-4764-8EBB-B3826703C45D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RazorLoader", "RazorLoader\RazorLoader.csproj", "{47DE26E7-F9FB-49F6-8F36-8B4C3F68B464}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{345BB973-6FA1-4152-AEBB-61F406E0CF26}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{345BB973-6FA1-4152-AEBB-61F406E0CF26}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{345BB973-6FA1-4152-AEBB-61F406E0CF26}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{345BB973-6FA1-4152-AEBB-61F406E0CF26}.Release|Any CPU.Build.0 = Release|Any CPU
+		{280A0414-F1D7-4764-8EBB-B3826703C45D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{280A0414-F1D7-4764-8EBB-B3826703C45D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{280A0414-F1D7-4764-8EBB-B3826703C45D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{280A0414-F1D7-4764-8EBB-B3826703C45D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{47DE26E7-F9FB-49F6-8F36-8B4C3F68B464}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47DE26E7-F9FB-49F6-8F36-8B4C3F68B464}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47DE26E7-F9FB-49F6-8F36-8B4C3F68B464}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47DE26E7-F9FB-49F6-8F36-8B4C3F68B464}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

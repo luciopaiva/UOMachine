@@ -1,0 +1,69 @@
+﻿<Window x:Class="UOMachine.OptionsWindow" x:ClassModifier="internal"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="Options" Height="313" Width="600" ResizeMode="NoResize" Topmost="True" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" Closing="Window_Closing" WindowStyle="SingleBorderWindow">
+	<Window.Background>
+		<RadialGradientBrush SpreadMethod="Reflect" MappingMode="RelativeToBoundingBox">
+			<GradientStop Color="#FF000000" Offset="0.231"/>
+			<GradientStop Color="#FF0300A0" Offset="1"/>
+		</RadialGradientBrush>
+	</Window.Background>
+    <Grid Background="Transparent">
+        <TabControl x:Name="tabControl1" Margin="0,0,0,0" VerticalAlignment="Top" Background="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}" Height="244" FontSize="12" FontWeight="Normal">
+            <TabItem Header="Main" x:Name="tabItemMain" FontWeight="Normal" FontStyle="Normal" TabIndex="1">
+                <Grid Width="Auto">
+                    <TextBox Height="23" Margin="0,27,65,0" x:Name="textBoxUO" VerticalAlignment="Top" FontSize="12" TabIndex="2" />
+                    <TextBox Margin="0,0,65,56" x:Name="textBoxRazor" FontSize="12" Height="23" VerticalAlignment="Bottom" TabIndex="4" />
+                    <Label Height="25" Margin="0,4,65,0" x:Name="label1" VerticalAlignment="Top" FontSize="13" Content="UO installation folder:"/>
+                    <Label Margin="0,103.723,65,78.377" x:Name="label2" FontSize="13" Height="25" Content="Razor installation folder:" d:LayoutOverrides="VerticalAlignment"/>
+                    <Button Height="23" HorizontalAlignment="Right" Margin="0,0,4,159.517" x:Name="buttonUO" VerticalAlignment="Bottom" Width="53" FontSize="13" Click="buttonUO_Click" Content="Browse" TabIndex="7" />
+                    <Button FontSize="13" HorizontalAlignment="Right" Margin="0,0,4,56" x:Name="buttonRazor" Width="53" Click="buttonRazor_Click" Height="23" VerticalAlignment="Bottom" Content="Browse" TabIndex="9" />
+                    <TextBox Margin="0,78,65,0" x:Name="textBoxClient" Height="23" VerticalAlignment="Top" FontSize="12" TabIndex="3" />
+                    <Button HorizontalAlignment="Right" Margin="0,78,4,0" x:Name="buttonClient" Width="53" Click="buttonClient_Click" VerticalAlignment="Top" Height="23" Content="Browse" FontSize="13" TabIndex="8" />
+                    <Label Margin="0,55,65,0" x:Name="label3" Height="25" FontSize="13" VerticalAlignment="Top" Content="UO client path:"/>
+                    <TextBox Height="23" Margin="0,0,182,7" x:Name="textBoxServer" VerticalAlignment="Bottom" FontSize="12" TabIndex="5" />
+                    <TextBox Height="23" HorizontalAlignment="Right" Margin="0,0,65,7" x:Name="textBoxPort" VerticalAlignment="Bottom" Width="110" FontSize="12" TabIndex="6" />
+                    <Label FontSize="13" Height="25" Margin="0,0,0,30" x:Name="label5" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="388" Content="Server:"/>
+                    <Label FontSize="13" Height="25" HorizontalAlignment="Right" Margin="0,0,64,30" x:Name="label6" VerticalAlignment="Bottom" Width="111" Content="Port:"/>
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="tabItemClient" Header="Client">
+            	<Grid>
+            		<CheckBox HorizontalAlignment="Left" VerticalAlignment="Top" Content="Patch encryption" Margin="6,16,0,0" Height="16" Width="Auto" FontSize="13" Name="checkBoxEncryption" />
+            		<CheckBox HorizontalAlignment="Left" VerticalAlignment="Top" Content="Patch Felucca stamina check (&lt; 7.0.0.0)" Margin="6,36,0,0" Height="16" Width="Auto" FontSize="13" x:Name="checkBoxStamina" />
+            		<CheckBox HorizontalAlignment="Left" VerticalAlignment="Top" Content="Always light patch" Margin="6,56,0,0" Height="16" Width="Auto" FontSize="13" x:Name="checkBoxLight" />
+            	</Grid>
+            </TabItem>
+            <TabItem Header="Razor" x:Name="tabItemRazor">
+                <Grid Height="Auto" Width="Auto">
+                    <CheckBox Height="16" HorizontalAlignment="Left" Margin="6,16,0,0" x:Name="checkBoxPatchClient" VerticalAlignment="Top" Width="186" IsChecked="False" FontSize="13" Content="Patch client encryption"/>
+                    <CheckBox Height="16" HorizontalAlignment="Left" Margin="6,38,0,0" x:Name="checkBoxEncryptedServer" VerticalAlignment="Top" Width="180" FontSize="13" Content="Server uses OSI encryption"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Document" x:Name="tabItemDocument">
+                <Grid Height="Auto" x:Name="grid1" Width="Auto">
+                    <CheckBox Height="16" HorizontalAlignment="Left" Margin="22,26,0,0" x:Name="checkBoxConvert" VerticalAlignment="Top" Width="Auto" Content="Convert tabs to spaces" FontSize="13"/>
+                    <CheckBox Height="16" HorizontalAlignment="Left" Margin="22,48,0,0" x:Name="checkBoxCopy" VerticalAlignment="Top" Width="Auto" Content="Cut / Copy whole line" FontSize="13"/>
+                    <CheckBox Height="16" HorizontalAlignment="Left" Margin="22,69,0,0" x:Name="checkBoxControl" VerticalAlignment="Top" Width="Auto" Content="Show box for control characters" FontSize="13"/>
+                    <CheckBox HorizontalAlignment="Left" Margin="22,89,0,102.1" x:Name="checkBoxSpace" Width="Auto" Content="Show spaces" FontSize="13" Height="16" d:LayoutOverrides="Height"/>
+                    <CheckBox Height="16" HorizontalAlignment="Left" Margin="22,0,0,81" x:Name="checkBoxTab" VerticalAlignment="Bottom" Width="Auto" Content="Show tabs" FontSize="13"/>
+                    <Label Height="25" HorizontalAlignment="Left" Margin="22,0,0,48" x:Name="label4" VerticalAlignment="Bottom" Width="108" Content="Indentation size:" FontSize="13"/>
+                    <TextBox Height="21.96" HorizontalAlignment="Left" Margin="126.54,0,0,48" x:Name="textBoxSize" VerticalAlignment="Bottom" Width="40" />
+                </Grid>
+            </TabItem>
+            <TabItem Header="Performance" x:Name="tabItemPerformance" HorizontalAlignment="Left">
+                <Grid Height="Auto" Width="Auto">
+                    <GroupBox Header="Statics caching (memory required)" HorizontalAlignment="Left" Margin="1,0,0,0" x:Name="groupBox1" Width="231" Height="116" VerticalAlignment="Top" FontSize="13">
+                        <Grid>
+                            <RadioButton Height="Auto" Margin="5,8,58,0" x:Name="radioButtonNone" VerticalAlignment="Top" IsChecked="False" Content="None (0 extra)"/>
+                            <RadioButton Margin="5,37,6,29" x:Name="radioButtonIndices" Content="Static indices only (about 20 MB)"/>
+                            <RadioButton Margin="5,0,36,12" x:Name="radioButtonFull" Height="Auto" VerticalAlignment="Bottom" Content="Full caching (about 70 MB)"/>
+                        </Grid>
+                    </GroupBox>
+                </Grid>
+            </TabItem>
+        </TabControl>
+        <Button Height="23" HorizontalAlignment="Right" Margin="0,0,86,5" x:Name="buttonOk" VerticalAlignment="Bottom" Width="75" IsDefault="False" Click="buttonOk_Click" Content="OK" FontSize="12" TabIndex="10" />
+        <Button Height="23" HorizontalAlignment="Right" Margin="0,0,5,5" x:Name="buttonCancel" VerticalAlignment="Bottom" Width="75" IsCancel="True" Click="buttonCancel_Click" Content="Cancel" FontSize="12" TabIndex="11" />
+    </Grid>
+</Window>
