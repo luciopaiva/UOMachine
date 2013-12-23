@@ -39,7 +39,7 @@ namespace UOMachine
         public delegate void dClientListChanged();
         private static object myClientListChangedLock = new object();
         private static event dClientListChanged myClientListChangedEvent;
-        public static string StartupPath = @"C:\Users\Johnny Mantas\tmp\output\";//Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+        public static string StartupPath = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
         
         private static MainWindow myMainWindow;
 

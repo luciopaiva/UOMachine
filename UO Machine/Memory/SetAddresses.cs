@@ -404,7 +404,7 @@ namespace UOMachine
                 if (!GetServerSendAddress(baseAddress, fileBytes, clientInfo)) return false;
                 if (!GetPathFindAddress(baseAddress, fileBytes, clientInfo)) return false;
                 if (!GetGumpPointer(baseAddress, fileBytes, clientInfo)) return false;
-                if (!GetLoginServerAddress(baseAddress, fileBytes, clientInfo)) return false;
+                //if (!GetLoginServerAddress(baseAddress, fileBytes, clientInfo)) return false;
 
                 clientInfo.IsValid = true;
                 return true;
