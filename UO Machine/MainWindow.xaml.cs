@@ -43,8 +43,8 @@ namespace UOMachine
         }
         private const double myButtonScaleFactor = .9, myDisabledOpacity = .5;
         private static DropShadowEffect myDropShadow;
-        private static double myStartButtonWidth, myStopButtonWidth, myAddButtonWidth, myRazorButtonWidth;
-        private static Thickness myStartButtonMargin, myStopButtonMargin, myAddButtonMargin, myRazorButtonMargin;
+        private static double myStartButtonWidth, myStopButtonWidth, myAddButtonWidth, myRazorButtonWidth, mySteamButtonWidth;
+        private static Thickness myStartButtonMargin, myStopButtonMargin, myAddButtonMargin, myRazorButtonMargin, mySteamButtonMargin;
         private const string titleString = "UO Machine Alpha 3";
         private const string titleSpace = "                  ";
         private string fileTitleString = "";
@@ -80,6 +80,8 @@ namespace UOMachine
             myStopButtonMargin = stopButton.Margin;
             myAddButtonMargin = addButton.Margin;
             myRazorButtonMargin = razorButton.Margin;
+            mySteamButtonWidth = steamButton.Width;
+            mySteamButtonMargin = steamButton.Margin;
             stopButton.IsEnabled = false;
             razorButton.IsEnabled = false;
             addButton.IsEnabled = false;
@@ -495,6 +497,42 @@ namespace UOMachine
         private void assemblyPicker_AssemblySelectedEvent(string fileName)
         {
             scriptTextBox.Text = "/* <AREF = \"" + fileName + "\"> */\r\n" + scriptTextBox.Text;
+        }
+
+        private void steamButton_MouseEnter(object sender, MouseEventArgs e)
+        {
+            steamButton.Effect = myDropShadow;
+        }
+
+        private void steamButton_MouseLeave(object sender, MouseEventArgs e)
+        {
+            steamButton.Effect = null;
+        }
+
+        private void steamButton_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            ButtonDown(steamButton);
+        }
+
+        private void steamButton_PreviewMouseUp(object sender, MouseButtonEventArgs e)
+        {
+            ButtonUp(steamButton, mySteamButtonWidth, mySteamButtonMargin);
+            if (e.ChangedButton != MouseButton.Left) steamButton_Click(sender, e);
+
+        }
+
+        private void steamButton_Click(object sender, RoutedEventArgs e)
+        {
+            int index;
+            razorButton.IsEnabled = false;
+            addButton.IsEnabled = false;
+            addButton.Opacity = myDisabledOpacity;
+            razorButton.Opacity = myDisabledOpacity;
+            UOMachine.Misc.SteamLauncher.Launch(myCurrentOptions, out index);
+            razorButton.IsEnabled = true;
+            addButton.IsEnabled = true;
+            addButton.Opacity = 1;
+            razorButton.Opacity = 1;
         }
 
     }

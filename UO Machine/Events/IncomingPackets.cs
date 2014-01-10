@@ -1120,7 +1120,7 @@ namespace UOMachine.Events
                     if (ex.InnerException != null) throw ex.InnerException;
                     throw ex;
                 }
-                //handler(client, serial, ID, x, y, layout, text);
+                handler(client, serial, ID, x, y, layout, text);
             }
             lock (myGenericGumpLock)
             {
