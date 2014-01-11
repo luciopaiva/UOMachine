@@ -229,6 +229,32 @@ namespace UOMachine
             byte[] sig1 = new byte[3192]; //was 1024 (Reximus 02/2010)
             int offset;
 
+            /*
+             * In the past, client crashes I had were due to EasyUO overwriting parts of the code cave with data (I verified).
+             * I'm still getting occasional client crashes when using big EasyUO scripts, and although I haven't checked for sure,
+             * I will assume it's the same problem, so let's VirtualAllocEx our own memory space and use that, I don't know yet if this
+             * will cause any problems (far jmps?) so this is purely a test.
+             */
+            if (clientInfo.AllocCodeAddress != null)
+            {
+                uint caveAddress = (uint)clientInfo.AllocCodeAddress;
+                uint recvCaveAddress = caveAddress + 526;
+                uint clientSendCaveAddress = recvCaveAddress + 28;
+                uint sendCaveAddress = clientSendCaveAddress + 80;
+                uint serverSendCaveAddress = sendCaveAddress + 26;
+                uint pathFindCaveAddress = serverSendCaveAddress + 74;
+                uint gumpFunctionCaveAddress = pathFindCaveAddress + 64;
+
+                clientInfo.CaveAddress = (IntPtr)caveAddress;
+                clientInfo.RecvCaveAddress = (IntPtr)recvCaveAddress;
+                clientInfo.SendCaveAddress = (IntPtr)sendCaveAddress;
+                clientInfo.ClientSendCaveAddress = (IntPtr)clientSendCaveAddress;
+                clientInfo.ServerSendCaveAddress = (IntPtr)serverSendCaveAddress;
+                clientInfo.PathFindCaveAddress = (IntPtr)pathFindCaveAddress;
+                clientInfo.GumpFunctionCaveAddress = (IntPtr)gumpFunctionCaveAddress;
+                return true;
+            }
+
             if (FindSignatureOffset(sig1, buffer, out offset))
             {
                 uint caveAddress = (uint)baseAddress + (uint)offset + 1750; //was 750 (Reximus 02/2010)

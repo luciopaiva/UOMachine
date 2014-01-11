@@ -114,6 +114,15 @@ namespace UOMachine
             }
         }
 
+        // testing 
+        private IntPtr myAllocCodeAddress;
+        public IntPtr AllocCodeAddress
+        {
+            get { return myAllocCodeAddress; }
+            set { myAllocCodeAddress = value; }
+        }
+        // end testing
+
         private int myCurrentAttackTarget;
         public int CurrentAttackTarget
         {
@@ -217,6 +226,13 @@ namespace UOMachine
                 this.IsValid = false;
                 return;
             }
+
+            // testing
+            IntPtr codeMemory;
+            codeMemory = Win32.VirtualAllocEx(p.Handle, IntPtr.Zero, 4096, Win32.AllocationType.Commit, Win32.MemoryProtection.ExecuteReadWrite);
+            if (codeMemory != null)
+                this.AllocCodeAddress = codeMemory;
+            // end testing
             Memory.SetAddresses(this, p.MainModule.FileName);
             uint pid;
             this.ThreadID = Win32.GetWindowThreadProcessId(this.WindowHandle, out pid);
