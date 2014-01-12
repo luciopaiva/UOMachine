@@ -121,6 +121,13 @@ namespace UOMachine
             get { return myAllocCodeAddress; }
             set { myAllocCodeAddress = value; }
         }
+
+        private bool myNewStyleLoginPatch = false;
+        public bool NewStyleLoginPatch
+        {
+            get { return myNewStyleLoginPatch; }
+            set { myNewStyleLoginPatch = true; }
+        }
         // end testing
 
         private int myCurrentAttackTarget;

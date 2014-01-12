@@ -76,7 +76,7 @@ namespace UOMachine
                         throw new ApplicationException("Unknown error at ClientInfoCollection.Add.");
                     ci.Instance = instance;
                     index = instance;
-                    //Macros.Macro.ChangeServer(instance, options.Server, options.Port);
+                    Macros.Macro.ChangeServer(instance, options.Server, options.Port);
                     Thread.Sleep(500);
                     RemoteHooking.Inject(p.Id, Path.Combine(UOM.StartupPath, "clienthook.dll"), Path.Combine(UOM.StartupPath, "clienthook.dll"), UOM.ServerName);
                 }

@@ -332,6 +332,7 @@ namespace UOMachine
             
             byte[] sig1 = new byte[] { 0x8B, 0x44, 0x24, 0x0C, 0xC1, 0xE1, 0x08, 0x0B, 0xC8, 0x66, 0x89, 0x15 };
             byte[] sig2 = new byte[] { 0xC1, 0xE1, 0x08, 0x0B, 0x4C, 0x24, 0x0C, 0x89, 0x0D };
+            byte[] sig3 = new byte[] { 0x56, 0x57, 0x6A, 0x1C, 0xC7 };
             int offset;
 
             if (FindSignatureOffset(sig1, buffer, out offset))
@@ -356,6 +357,19 @@ namespace UOMachine
                 clientInfo.LoginPortAddress = (IntPtr)(BitConverter.ToInt32(buffer, offset - 0x04));
                 if (Memory.Write(clientInfo.Handle, patchAddress, patch, true))
                     return Memory.Write(clientInfo.Handle, portPatchAddress, portPatch, true);
+            }
+
+            if (FindSignatureOffset(sig3, buffer, out offset))
+            {
+                byte[] patch = { 0x90, 0x90, 0x90, 0x90, 0x90 };
+                IntPtr loginPointer = (IntPtr)(BitConverter.ToInt32(buffer, offset + 0x20));
+                clientInfo.LoginServerAddress = loginPointer;
+                clientInfo.NewStyleLoginPatch = true;
+                IntPtr patchAddress = (IntPtr)(baseAddress + offset + 0x1f);
+                Memory.Write(clientInfo.Handle, patchAddress, patch, true);
+                patchAddress = (IntPtr)(baseAddress + offset + 0x46);
+                Memory.Write(clientInfo.Handle, patchAddress, patch, true);
+                return true;
             }
 
             return false;
@@ -430,7 +444,7 @@ namespace UOMachine
                 if (!GetServerSendAddress(baseAddress, fileBytes, clientInfo)) return false;
                 if (!GetPathFindAddress(baseAddress, fileBytes, clientInfo)) return false;
                 if (!GetGumpPointer(baseAddress, fileBytes, clientInfo)) return false;
-                //if (!GetLoginServerAddress(baseAddress, fileBytes, clientInfo)) return false;
+                if (!GetLoginServerAddress(baseAddress, fileBytes, clientInfo)) return false;
 
                 clientInfo.IsValid = true;
                 return true;
