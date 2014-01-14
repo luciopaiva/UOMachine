@@ -352,9 +352,11 @@ namespace UOMachine.Data
                     int id3a = packet[4] << 8 | packet[5];
                     int value3a = packet[6] << 8 | packet[7];
                     int baseValue3a = packet[8] << 8 | packet[9];
-                    int skillCap3a = packet[11] << 8 | packet[12];
+                    int skillCap3a = 1000;                          //
+                    if (size3a != 11)                               // UOSteam doesn't send skillcap on changing locks in their UI
+                        skillCap3a = packet[11] << 8 | packet[12];  // So we kludge it and default to 100 skillcap
                     LockStatus lockStatus3a = (LockStatus)packet[10];
-                    if (size3a == 13)
+                    if ((size3a == 11) || (size3a == 13))           // 11 from UOSteam on lock change
                     {
                         IncomingPackets.OnSkillUpdate(client, id3a, (float)value3a / 10, (float)baseValue3a / 10, lockStatus3a, (float)skillCap3a / 10);
                         return;
