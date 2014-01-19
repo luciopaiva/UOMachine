@@ -36,8 +36,8 @@ namespace UOMachine.Misc
         {
             /* Could all seem a bit excessive just to get the pid of the client it creates? */
             ProcessStartInfo startInfo = new ProcessStartInfo();
-            startInfo.WorkingDirectory = @"C:\Program Files (x86)\UOSteam\"; // to be fixed
-            startInfo.FileName = @"C:\Program Files (x86)\UOSteam\UOSteam.exe"; // to be fixed
+            startInfo.WorkingDirectory = MainWindow.CurrentOptions.UOSFolder;
+            startInfo.FileName = Path.Combine(MainWindow.CurrentOptions.UOSFolder, "UOSteam.exe");
             index = -1;
             Win32.SafeProcessHandle hProcess;
             Win32.SafeThreadHandle hThread;

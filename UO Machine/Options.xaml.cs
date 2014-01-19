@@ -31,7 +31,8 @@ namespace UOMachine
         {
             UOFolder,
             UOClient,
-            Razor
+            Razor,
+            UOS
         }
         internal delegate void dOptionsChanged(OptionsData optionsData);
         internal delegate void dOptionsCancelled();
@@ -66,6 +67,7 @@ namespace UOMachine
             }
             textBoxUO.Text = options.UOFolder;
             textBoxRazor.Text = options.RazorFolder;
+            textBoxUOS.Text = options.UOSFolder;
             textBoxSize.Text = options.TextEditorOptions.IndentationSize.ToString();
             textBoxServer.Text = options.Server;
             textBoxPort.Text = options.Port.ToString();
@@ -131,6 +133,7 @@ namespace UOMachine
             od.UOFolder = textBoxUO.Text;
             od.UOClientPath = textBoxClient.Text;
             od.RazorFolder = textBoxRazor.Text;
+            od.UOSFolder = textBoxUOS.Text;
             od.TextEditorOptions.ConvertTabsToSpaces = (bool)checkBoxConvert.IsChecked;
             od.TextEditorOptions.CutCopyWholeLine = (bool)checkBoxCopy.IsChecked;
             od.TextEditorOptions.ShowBoxForControlCharacters = (bool)checkBoxControl.IsChecked;
@@ -152,26 +155,27 @@ namespace UOMachine
             return true;
         }
 
-        private void ShowFolderBrowser(string path, bool UOBrowser)
+        private void ShowFolderBrowser(string path, BrowserType type)
         {
             FolderBrowserDialog fdg = new FolderBrowserDialog();
             fdg.RootFolder = Environment.SpecialFolder.MyComputer;
             DialogResult d = fdg.ShowDialog();
             if (d == System.Windows.Forms.DialogResult.OK && !string.IsNullOrEmpty(fdg.SelectedPath))
             {
-                if (UOBrowser) textBoxUO.Text = fdg.SelectedPath;
-                else textBoxRazor.Text = fdg.SelectedPath;
+                if (type == BrowserType.UOFolder) textBoxUO.Text = fdg.SelectedPath;
+                else if (type == BrowserType.Razor) textBoxRazor.Text = fdg.SelectedPath;
+                else if (type == BrowserType.UOS) textBoxUOS.Text = fdg.SelectedPath;
             }
         }
 
         private void buttonUO_Click(object sender, RoutedEventArgs e)
         {
-            ShowFolderBrowser(textBoxUO.Text, true);
+            ShowFolderBrowser(textBoxUO.Text, BrowserType.UOFolder);
         }
 
         private void buttonRazor_Click(object sender, RoutedEventArgs e)
         {
-            ShowFolderBrowser(textBoxRazor.Text, false);
+            ShowFolderBrowser(textBoxRazor.Text, BrowserType.Razor);
         }
 
         private void buttonCancel_Click(object sender, RoutedEventArgs e)
@@ -218,6 +222,11 @@ namespace UOMachine
                 this.Hide();
             }
             OnCancel();
+        }
+
+        private void buttonUOS_Click(object sender, RoutedEventArgs e)
+        {
+            ShowFolderBrowser(textBoxUOS.Text, BrowserType.UOS);
         }
     }
 }

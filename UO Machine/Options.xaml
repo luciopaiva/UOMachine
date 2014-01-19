@@ -40,6 +40,13 @@
                     <CheckBox Height="16" HorizontalAlignment="Left" Margin="6,38,0,0" x:Name="checkBoxEncryptedServer" VerticalAlignment="Top" Width="180" FontSize="13" Content="Server uses OSI encryption"/>
                 </Grid>
             </TabItem>
+            <TabItem Header="UOSteam" x:Name="tabItemUOSteam">
+                <Grid Height="Auto" Width="Auto">
+                    <TextBox Margin="0,0,65,159" x:Name="textBoxUOS" FontSize="12" Height="23" VerticalAlignment="Bottom" TabIndex="4" />
+                    <Label Margin="0,0.04,65,187" x:Name="labelUOS" FontSize="13" Height="25" Content="UOSteam installation folder:"/>
+                    <Button FontSize="13" HorizontalAlignment="Right" Margin="0,0,0,159" x:Name="buttonUOS" Width="53" Click="buttonUOS_Click" Height="23" VerticalAlignment="Bottom" Content="Browse" TabIndex="9" />
+                </Grid>
+            </TabItem>
             <TabItem Header="Document" x:Name="tabItemDocument">
                 <Grid Height="Auto" x:Name="grid1" Width="Auto">
                     <CheckBox Height="16" HorizontalAlignment="Left" Margin="22,26,0,0" x:Name="checkBoxConvert" VerticalAlignment="Top" Width="Auto" Content="Convert tabs to spaces" FontSize="13"/>
