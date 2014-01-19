@@ -501,12 +501,12 @@ namespace UOMachine
 
         private void steamButton_MouseEnter(object sender, MouseEventArgs e)
         {
-            steamButton.Effect = myDropShadow;
+//            steamButton.Effect = myDropShadow;
         }
 
         private void steamButton_MouseLeave(object sender, MouseEventArgs e)
         {
-            steamButton.Effect = null;
+//            steamButton.Effect = null;
         }
 
         private void steamButton_PreviewMouseDown(object sender, MouseButtonEventArgs e)

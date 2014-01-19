@@ -236,8 +236,8 @@ namespace UOMachine
 
             // testing
             IntPtr codeMemory;
-            codeMemory = Win32.VirtualAllocEx(p.Handle, IntPtr.Zero, 4096, Win32.AllocationType.Commit, Win32.MemoryProtection.ExecuteReadWrite);
-            if (codeMemory != null)
+            codeMemory = Memory.Allocate(p.Handle, IntPtr.Zero, 4096, true); //Win32.VirtualAllocEx(p.Handle, IntPtr.Zero, 4096, Win32.AllocationType.Commit, Win32.MemoryProtection.ExecuteReadWrite);
+            if (codeMemory != IntPtr.Zero)
                 this.AllocCodeAddress = codeMemory;
             // end testing
             Memory.SetAddresses(this, p.MainModule.FileName);

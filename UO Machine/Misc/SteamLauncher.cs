@@ -53,18 +53,15 @@ namespace UOMachine.Misc
                 Process p = Process.GetProcessById((int)pid);
                 IntPtr codeAddress;
 
-                /* Entry point varies, so need to use GetThreadContext to find entrypoint */
-                Win32.CONTEXT cntx = new Win32.CONTEXT();
-                cntx.ContextFlags = (int)Win32.CONTEXT_FLAGS.CONTEXT_FULL;
-                Win32.GetThreadContext(hThread.DangerousGetHandle(), ref cntx);
+                IntPtr baseAddress = GetBaseAddress(hProcess, hThread);
+                if (baseAddress == null)
+                {
+                    UOM.SetStatusLabel("Status : UOS Hook failed");
+                    return false;
+                }
 
-                /* Ebx+8 = pointer to entrypoint to be read with ReadProcessMemory. */
-                byte[] tmp = new byte[4];
-                Memory.Read(hProcess.DangerousGetHandle(), (IntPtr)(cntx.Ebx + 8), tmp, true);
-
-                int baseAddress = tmp[3] << 24 | tmp[2] << 16 | tmp[1] << 8 | tmp[0];
                 byte[] buffer = new byte[0x17000];
-                Memory.Read(hProcess.DangerousGetHandle(), (IntPtr)(baseAddress + 0x1000), buffer, true);
+                Memory.Read(hProcess.DangerousGetHandle(), (IntPtr)(((int)baseAddress) + 0x1000), buffer, true);
 
                 UOM.SetStatusLabel("Status : Patching UOSteam");
 
@@ -76,7 +73,7 @@ namespace UOMachine.Misc
                 int offset = 0;
                 if (FindSignatureOffset(findBytes, buffer, out offset))
                 {
-                    if ((codeAddress = Win32.VirtualAllocEx(hProcess.DangerousGetHandle(), IntPtr.Zero, 1024, Win32.AllocationType.Commit, Win32.MemoryProtection.ExecuteReadWrite)) == IntPtr.Zero)
+                    if ((codeAddress = Memory.Allocate(hProcess.DangerousGetHandle(), IntPtr.Zero, 1024, true)) == IntPtr.Zero)
                     {
                         UOM.SetStatusLabel("Status : Memory Allocation failed");
                         hProcess.Dispose();
@@ -122,7 +119,9 @@ namespace UOMachine.Misc
                     patchCode2[3] = (byte)(patchAddress >> 16);
                     patchCode2[4] = (byte)(patchAddress >> 24);
 
-                    Memory.Write(hProcess.DangerousGetHandle(), (IntPtr)((baseAddress + 0x1000) + offset), patchCode2, true);
+                    IntPtr writeAddress = new IntPtr((baseAddress.ToInt32() + 0x1000) + offset);
+
+                    Memory.Write(hProcess.DangerousGetHandle(), writeAddress, patchCode2, true);
 
                     if (Win32.ResumeThread(hThread.DangerousGetHandle()) == -1)
                     {
@@ -151,6 +150,21 @@ namespace UOMachine.Misc
             return false;
 
 
+        }
+
+        private static IntPtr GetBaseAddress(Win32.SafeProcessHandle hProcess, Win32.SafeThreadHandle hThread)
+        {
+            /* Entry point varies, so need to use GetThreadContext to find entrypoint */
+            Win32.CONTEXT cntx = new Win32.CONTEXT();
+            cntx.ContextFlags = (int)Win32.CONTEXT_FLAGS.CONTEXT_FULL;
+            Win32.GetThreadContext(hThread.DangerousGetHandle(), ref cntx);
+
+            /* Ebx+8 = pointer to entrypoint to be read with ReadProcessMemory. */
+            byte[] tmp = new byte[4];
+            Memory.Read(hProcess.DangerousGetHandle(), (IntPtr)(cntx.Ebx + 8), tmp, true);
+
+            int baseAddress = tmp[3] << 24 | tmp[2] << 16 | tmp[1] << 8 | tmp[0];
+            return (IntPtr)baseAddress;
         }
 
         private static bool FindSignatureOffset(byte[] signature, byte[] buffer, out int offset)

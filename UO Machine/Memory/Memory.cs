@@ -38,5 +38,17 @@ namespace UOMachine
             if (!success && throwException) throw new Win32Exception(Marshal.GetLastWin32Error());
             return success;
         }
+
+        public static IntPtr Allocate(IntPtr processHandle, IntPtr address, uint size, bool throwException)
+        {
+            IntPtr allocAddress = IntPtr.Zero;
+
+            if ((allocAddress = Win32.VirtualAllocEx(processHandle, address, size, Win32.AllocationType.Commit, Win32.MemoryProtection.ExecuteReadWrite)) == IntPtr.Zero)
+            {
+                if (throwException) throw new Win32Exception(Marshal.GetLastWin32Error());
+            }
+
+            return allocAddress;
+        }
     }
 }

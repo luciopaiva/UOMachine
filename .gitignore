@@ -1,3 +1,9 @@
 UOMLog*
 output\*
 *obj\*
+*.suo
+EasyHook\*
+NetFX3.5\*
+ClientHook\obj\*
+RazorLoader\obj\*
+UO Machine\obj\*
